@@ -102,7 +102,10 @@
     },
 
     mounted() {
-      axios.get("http://127.0.0.1:3000/api/client")
+      // axios.get("http://127.0.0.1:3000/api/client")
+      const baseURL = import.meta.env.VITE_API_URL;
+
+      axios.get(`${baseURL}/api/client`)
       .then(response => {
         this.clientID = response.data.clientID;
         console.log("Client ID:", this.clientID);
@@ -119,7 +122,10 @@
         console.log(this.userInput)
         this.messages.push({ text: this.userInput, sender: "user" });
         // const url = "http://" + process.env.VUE_APP_HOST_IP + ":" + process.env.VUE_APP_HOST_PORT + "/api/query";
-        const url = `http://${process.env.VUE_APP_HOST_IP}:${process.env.VUE_APP_HOST_PORT}/api/query/${this.clientID}`;
+        // const url = `http://${process.env.VUE_APP_HOST_IP}:${process.env.VUE_APP_HOST_PORT}/api/query/${this.clientID}`;
+        
+        const baseURL = import.meta.env.VITE_API_URL;
+        const url = `${baseURL}api/query/${this.clientID}`;
 
         console.log("AXIOS URL: ", url);
 
