@@ -40,10 +40,10 @@ const app = express();
 // -- middleware activation
 app.use(express.json()); 
 app.use(cors({
-  origin: ['http://localhost:8080', 'http://127.0.0.1:8080', 'https://ai-customer-service-agent-2.onrender.com', 'https://ai-customer-service-agent-pow0.onrender.com'],
+  origin: ['http://localhost:8080', 'http://127.0.0.1:8080', 'https://ai-customer-service-agent-2.onrender.com'],
   credentials: true
 }));
-//app.use(express.static(path.join(__dirname, "frontend", "dist")));
+// app.use(express.static(path.join(__dirname, "frontend", "dist")));
 
 //-- MongoDB request
 
@@ -81,20 +81,20 @@ let historyReach = 4;
 // })
 
 
-// app.get("/api/client", async (req, res) => {
-//     let id = uuid();
-//     console.log("New client connected with ID:", id); // debug
-//     res.json({clientID: id});
-//     chat_history[id] = [];
-//     currentOrder[id] = {order:[]};
-// })
-app.get("/api/client/:id", async (req, res) => {
-    const { clientID } = req.params;
-    const { userInput } = req.query;
+app.get("/api/client", async (req, res) => {
+    let id = uuid();
+    console.log("New client connected with ID:", id); // debug
+    res.json({clientID: id});
+    chat_history[id] = [];
+    currentOrder[id] = {order:[]};
+})
+// app.get("/api/client/:id", async (req, res) => {
+//     const { clientID } = req.params;
+//     const { userInput } = req.query;
 
-    console.log("received query:", clientID, userInput); // debug
-    res.json({message: `Hello from backend, ${clientID}! You said: ${userInput}`});
-});
+//     console.log("received query:", clientID, userInput); // debug
+//     res.json({message: `Hello from backend, ${clientID}! You said: ${userInput}`});
+// });
 
 app.get("/api/query/:id", async (req, res) => {
     console.log("Received /api/query request with params:", req.params, "and query:", req.query); // debug
@@ -239,6 +239,7 @@ app.get("/api/query/:id", async (req, res) => {
             console.log("Error: No JSON generated");
         }
 
+        
         chat_history[id].push("AI: " + responseText);
 
         console.log(chat_history[id]);
