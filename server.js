@@ -40,7 +40,7 @@ const app = express();
 // -- middleware activation
 app.use(express.json()); 
 app.use(cors({
-  origin: ['http://localhost:8080', 'http://127.0.0.1:8080', 'https://ai-customer-service-agent-2.onrender.com'],
+  origin: ['http://localhost:8080', 'http://127.0.0.1:8080', 'https://ai-customer-service-agent-1.onrender.com', 'https://ai-customer-service-agent-pow0.onrender.com'],
   credentials: true
 }));
 // app.use(express.static(path.join(__dirname, "frontend", "dist")));
