@@ -81,13 +81,20 @@ let historyReach = 4;
 // })
 
 
-app.get("/api/client", async (req, res) => {
-    let id = uuid();
-    console.log("New client connected with ID:", id); // debug
-    res.json({clientID: id});
-    chat_history[id] = [];
-    currentOrder[id] = {order:[]};
-})
+// app.get("/api/client", async (req, res) => {
+//     let id = uuid();
+//     console.log("New client connected with ID:", id); // debug
+//     res.json({clientID: id});
+//     chat_history[id] = [];
+//     currentOrder[id] = {order:[]};
+// })
+app.get("/api/client/:id", async (req, res) => {
+    const { clientID } = req.params;
+    const { userInput } = req.query;
+
+    console.log("received query:", clientID, userInput); // debug
+    res.json({message: `Hello from backend, ${clientID}! You said: ${userInput}`});
+});
 
 app.get("/api/query/:id", async (req, res) => {
     console.log("Received /api/query request with params:", req.params, "and query:", req.query); // debug
