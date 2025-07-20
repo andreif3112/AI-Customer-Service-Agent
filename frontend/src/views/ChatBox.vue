@@ -102,10 +102,10 @@
     },
 
     mounted() {
-      // axios.get("http://127.0.0.1:3000/api/client")
-      const baseURL = import.meta.env.VITE_API_URL;
+      // const baseURL = import.meta.env.VITE_API_URL;
 
-      axios.get(`${baseURL}/api/client`)
+      // axios.get(`${baseURL}/api/client`)
+      axios.get("http://127.0.0.1:3000/api/client")
       .then(response => {
         this.clientID = response.data.clientID;
         console.log("Client ID:", this.clientID);
@@ -122,10 +122,10 @@
         console.log(this.userInput)
         this.messages.push({ text: this.userInput, sender: "user" });
         // const url = "http://" + process.env.VUE_APP_HOST_IP + ":" + process.env.VUE_APP_HOST_PORT + "/api/query";
-        // const url = `http://${process.env.VUE_APP_HOST_IP}:${process.env.VUE_APP_HOST_PORT}/api/query/${this.clientID}`;
+        const url = `http://${process.env.VUE_APP_HOST_IP}:${process.env.VUE_APP_HOST_PORT}/api/query/${this.clientID}`;
         
-        const baseURL = import.meta.env.VITE_API_URL;
-        const url = `${baseURL}api/query/${this.clientID}`;
+        // const baseURL = import.meta.env.VITE_API_URL;
+        // const url = `${baseURL}api/query/${this.clientID}`;
 
         console.log("AXIOS URL: ", url);
 
@@ -200,7 +200,7 @@
             top: centerY,
             ease: "power2.out",
             onReverseComplete: () => {
-             console.log("Reverse complete!");
+              console.log("Reverse complete!");
               centered = false;
             }
       });
@@ -233,7 +233,7 @@
         }
       },
       showTicket() {
-        if (!centered){
+        if (!centered) {
           centered = true; 
           const widget = this.$refs.sendButton;
           //widget.classList.remove("self-end", "mr-10", "mb-5");
@@ -248,23 +248,23 @@
           tween.set(widget, { position: "fixed"}); 
           this.isExpanded = true;
           tween.fromTo(widget, {left: fromLeft, top: fromTop, scale: 1}, {
-              scale: 3,
-              duration: 1,
-              left: centerX,
-              top: centerY/1.4,
-              overflow: "auto",
-              maxHeight: "15vh",
-              ease: "power2.out",
-              onComplete: () => {
-                widget.style.overflowY = "auto";
-              },
-              onReverseComplete: () => {
+            scale: 3,
+            duration: 1,
+            left: centerX,
+            top: centerY/1.4,
+            overflow: "auto",
+            maxHeight: "15vh",
+            ease: "power2.out",
+            onComplete: () => {
+              widget.style.overflowY = "auto";
+            },
+            onReverseComplete: () => {
               console.log("Reverse complete!");
               centered = false;
               this.isExpanded = false;
               //widget.classList.add("self-end", "mr-10", "mb-5");
-              }
-      });
+            }
+          });
     tween.play();
     console.log("new "+gsap.getProperty(widget, "left"));
 
