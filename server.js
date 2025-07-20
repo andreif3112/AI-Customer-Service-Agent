@@ -39,11 +39,17 @@ const app = express();
 
 // -- middleware activation
 app.use(express.json()); 
-app.use(cors({
-  origin: ['http://localhost:8080', 'http://127.0.0.1:8080', 'https://ai-customer-service-agent-1.onrender.com', 'https://ai-customer-service-agent-pow0.onrender.com'],
-  credentials: true
-}));
-// app.use(express.static(path.join(__dirname, "frontend", "dist")));
+// app.use(cors({
+//   origin: ['http://localhost:8080', 'http://127.0.0.1:8080', 'https://ai-customer-service-agent-1.onrender.com', 'https://ai-customer-service-agent-pow0.onrender.com'],
+//   credentials: true
+// }));
+
+// -- new addition: static file serving
+app.use(express.static(path.join(__dirname, "frontend", "dist")));
+// For SPA (Vue Router), redirect all other GET requests to index.html
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'frontend/dist/index.html'));
+});
 
 //-- MongoDB request
 

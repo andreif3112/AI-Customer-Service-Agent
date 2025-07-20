@@ -10,5 +10,9 @@
     "mongodb": "^6.17.0",
     "path": "^0.12.7",
     "uuid": "^11.1.0"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "heroku-postbuild": "cd frontend && npm install && npm run build"
   }
 }
