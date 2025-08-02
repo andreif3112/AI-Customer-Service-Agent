@@ -103,13 +103,15 @@
 
     mounted() {
       // const baseURL = import.meta.env.VITE_API_URL;
-
       // axios.get(`${baseURL}/api/client`)
 
-      // const url = `${process.env.VUE_APP_API_URL}/api/client`; 
+      // --------------------------------------------------------
+      // to test deployed version, use the following URL
+      const url = `${process.env.VUE_APP_API_URL}/api/client`; 
 
-      axios.get("http://127.0.0.1:3000/api/client")
-      //axios.get(url)
+      // to test locally, use the following URL
+      // axios.get("http://127.0.0.1:3000/api/client")
+      axios.get(url)
       .then(response => {
         this.clientID = response.data.clientID;
         console.log("Client ID:", this.clientID);
