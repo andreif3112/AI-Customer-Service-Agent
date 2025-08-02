@@ -128,8 +128,13 @@
         console.log(this.userInput)
         this.messages.push({ text: this.userInput, sender: "user" });
         // const url = "http://" + process.env.VUE_APP_HOST_IP + ":" + process.env.VUE_APP_HOST_PORT + "/api/query";
-        const url = `http://${process.env.VUE_APP_HOST_IP}:${process.env.VUE_APP_HOST_PORT}/api/query/${this.clientID}`;
+        // the following works for running locally:
+        // const url = `http://${process.env.VUE_APP_HOST_IP}:${process.env.VUE_APP_HOST_PORT}/api/query/${this.clientID}`;
         
+        // 8/1: for deployed version, use the following URL:
+        const url = `${process.env.VUE_APP_API_URL}/api/query/${this.clientID}`;
+
+        // don't use these, they are for Vite:
         // const baseURL = import.meta.env.VITE_API_URL;
         // const url = `${baseURL}api/query/${this.clientID}`;
 
