@@ -4,7 +4,7 @@
     "@langchain/mongodb": "^0.1.0",
     "cors": "^2.8.5",
     "dotenv": "^17.2.0",
-    "express": "^5.1.0",
+    "express": "^5.2.0",
     "fs": "^0.0.1-security",
     "langchain": "^0.3.30",
     "mongodb": "^6.17.0",
