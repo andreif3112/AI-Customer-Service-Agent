@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@auth0/auth0-vue": "^2.4.0",
-    "axios": "^1.7.9",
+    "axios": "^1.13.5",
     "core-js": "^3.8.3",
     "cors": "^2.8.5",
     "express": "^4.21.2",
